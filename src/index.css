@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #F97316;
+    --brand-primary-hover: #EA580C;
+    --brand-light: #FFF7ED;
+    --brand-soft: #FFEDD5;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-900 font-sans antialiased;
+  }
+
+  .dark body {
+    @apply bg-neutral-950 text-neutral-100;
+  }
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass-panel {
+  background: rgba(23, 23, 23, 0.85);
+}
+
+/* Resume Paper Simulation Container */
+.resume-paper {
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #171717;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  transform-origin: top center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Print Specific Rules */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Hide everything except the resume paper */
+  nav,
+  header,
+  aside,
+  footer,
+  .no-print,
+  button,
+  .editor-column,
+  .sidebar-column,
+  .ai-floating-btn,
+  .zoom-controls {
+    display: none !important;
+  }
+
+  .resume-paper {
+    width: 100% !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
